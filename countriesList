@@ -1,0 +1,93 @@
+package countriesList;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class CountriesList {
+	
+	static ArrayList<String> countries = new ArrayList<String>();
+	int menuOption = 0;
+	
+	static void displayWelcomeMessage()
+	{
+		System.out.print("Country List Manager");
+		System.out.println();
+	}
+	
+	static void displayMenu()
+	{
+		System.out.println("COMMAND MENU");
+		System.out.println("1 - List countries");
+		System.out.println("2 - Add a country");
+		System.out.println("3 - Exit");
+		System.out.println();
+	}
+	
+	int getMenuOption()
+	{
+		return menuOption;
+	}
+	
+	boolean checkForCountry(String country)
+	{
+		for(String i : countries)
+		{
+			if(i == country)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	static void addCountry(String country)
+	{
+		countries.add(country);
+	}
+	
+	static void listCountries()
+	{
+		for(String i : countries)
+		{
+			System.out.println(i);
+		}
+		if(countries.size() == 0)
+		{
+			System.out.println("No countries in the list.");
+		}
+	}
+
+	public static void main(String[] args) 
+	{
+		Scanner input = new Scanner(System.in);
+		
+		CountriesList list = new CountriesList();
+		displayWelcomeMessage();
+		displayMenu();
+	
+		
+		while(true)
+		{
+			System.out.println("Enter Menu Number: ");
+			list.menuOption = input.nextInt();
+			
+			if(list.getMenuOption() == 1)
+			{
+				listCountries();
+			}
+			if(list.getMenuOption() == 2)
+			{
+				System.out.println("Enter Country: ");
+				String country = input.next();
+				addCountry(country);
+			}
+			if(list.getMenuOption() == 3)
+			{
+				System.out.println("Goodbye.");
+				break;
+			}
+			
+		}
+		input.close();
+	}
+}
